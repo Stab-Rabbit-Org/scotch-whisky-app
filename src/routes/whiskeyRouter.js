@@ -18,7 +18,9 @@ router.post('/add', whiskeyController.addWhiskeys, (req, res) => {
     return res.status(200).json(res.locals.addWhiskey);
 });
 
-// router.delete('/', whiskeyController.deleteWhiskey)
+router.delete('/delete', whiskeyController.deleteWhiskeys, (req, res) => {
+    return res.status(200).json('deleted');
+});
 
 
 
