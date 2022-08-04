@@ -58,26 +58,38 @@ whiskeyController.getWhiskeys = (req, res, next) => {
     res.locals.addWhiskey = addWhiskeys;
      console.log('this is the added whiskey', req.body.whisky)
     return next()
-  }
-  catch (err){
-    console.log('error in controller');
-  }
+  } catch (err) {
+    return next({
+      log: `whiskeyController.addWhiskeys: ERROR: ${err}`,
+      status: 400,
+      message: { err: 'Error occured in whiskeyController.addWhiskeys.' },
+    });
+   }
   
  }
 
-// whiskeyController.deleteWhiskeys = (req, res, next) => {
+whiskeyController.deleteWhiskeys =  async(req, res, next) => {
 // const id = await req.params;
-//   console.log('MIDDLEWARE deletewhiskey');
-// const deleteQuery = `DELETE FROM scotches WHERE id = ${id};`
-// db.query(deleteQuery, req.params.id, )
-//   .then(data => {
-    
-//   })
-//   .catch(err => next ({
-//     log: 'whiskeyController.deleteWhiskeys',
-//     message: {err: 'Invalid delete'}
-//   }))
-// }
+  console.log('MIDDLEWARE deleteWhiskey');
+  // console.log('id is', id)
+      console.log('this is req.body',req.body)
+      console.log('this is req.body.id',req.body.id)
+    // console.log('query is', req.query)
+  try {
+    const deleteQuery = `DELETE FROM scotches WHERE id=${req.body.id}` 
+const deleteWhiskeys = await db.query(deleteQuery)
+res.locals.deleteWhiskeys = deleteWhiskeys;
+
+}  catch (err) {
+  return next({
+    log: `whiskeyController.deleteWhiskeys: ERROR: ${err}`,
+    status: 400,
+    message: { err: 'Error occured in whiskeyController.deleteWhiskeys.' },
+  });
+ }
+}
+
+
 
 
 
