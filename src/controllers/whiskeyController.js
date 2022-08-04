@@ -42,7 +42,7 @@ whiskeyController.getWhiskeys = (req, res, next) => {
     const {
       id,
       title,
-      img_url,
+      list_img_url,
       region,
       price,
       rating,
@@ -50,7 +50,7 @@ whiskeyController.getWhiskeys = (req, res, next) => {
     } = req.body.whisky 
     console.log('this is req.body.whisky.id', req.body.whisky.id)
     console.log('WHISKEY CONTROLLER');
-    const values = [id, title, img_url, region, price, rating, description]
+    const values = [id, title, list_img_url, region, price, rating, description]
     const addQuery = `INSERT INTO scotches(id,title,img_url,region,price,rating,description)
                            VALUES ($1, $2, $3, $4, $5, $6, $7);` 
     
@@ -65,7 +65,6 @@ whiskeyController.getWhiskeys = (req, res, next) => {
   
  }
 
- 
 // whiskeyController.deleteWhiskeys = (req, res, next) => {
 // const id = await req.params;
 //   console.log('MIDDLEWARE deletewhiskey');
